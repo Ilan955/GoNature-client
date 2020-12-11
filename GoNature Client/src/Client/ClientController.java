@@ -25,7 +25,7 @@ public class ClientController implements goIF
    * The default port to connect on.
    */
    public static int DEFAULT_PORT ;
-  
+   
   //Instance variables **********************************************
   
   /**
@@ -46,6 +46,7 @@ public class ClientController implements goIF
     try 
     {
       client= new GoClient(host, port, this);
+      
     } 
     catch(IOException exception) 
     {

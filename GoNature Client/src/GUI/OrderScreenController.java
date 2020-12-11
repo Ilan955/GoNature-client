@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import Client.ClientUI;
+import Entities.Person;
 import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +23,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 public class OrderScreenController implements Initializable{
-	
+
 
 	
 
@@ -47,7 +50,7 @@ public class OrderScreenController implements Initializable{
 
 	    @FXML
 	    private Label PriceLbl;
-	    
+	    Person t;
 	    ObservableList<String> listForParks;
 	    ObservableList<String> listForTimes;
 	    
@@ -87,18 +90,23 @@ public class OrderScreenController implements Initializable{
 	    	listForTimes = FXCollections.observableArrayList(Times);
     		TimeOfVisitCB.setItems(listForTimes);	
 	    }
-	    
+	    //!!!!!!! NEED TO CHANGE ID BY THE USER CONTROLLER!!!!!
+	    public void setIdOfMakingOrder() {
+	    	IdOfViditorLbl.setText("31198");
+	    }
+	    //initialize the parks and the times, and the id of the user who is making the order
 	    @Override
 		public void initialize(URL arg0, ResourceBundle arg1) {	
 			setWantedParkCm();
 			SetTimeParkCm();
+			setIdOfMakingOrder();
 		}
 	    
 	    
 	    public void start(Stage primaryStage) throws Exception {	
 			Parent root = FXMLLoader.load(getClass().getResource("NewOrder.fxml"));
 			Scene scene = new Scene(root);
-			primaryStage.setTitle("Prototy");
+			primaryStage.setTitle("New Order");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -111,8 +119,18 @@ public class OrderScreenController implements Initializable{
 	    }
 
 	    @FXML
-	    void WhenClickNextBtn(ActionEvent event) {
-
+	    void WhenClickNextBtn(ActionEvent event) throws IOException {
+	    	String timeofVisit=(String)TimeOfVisitCB.getValue();
+	    	String date=DateLbl.getValue().toString();
+	    	String wanted= (String)WantedParkCB.getValue();
+	    	int numOfVisitors= Integer.parseInt(NumOfVisotrsLbl.getText());
+	    	Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+	    	
+	    	//here we will send the data we got from the page, we need to use "the type"
+	    	//!!!!!!! TYPE NEED TO BE CHANGED !!!!!!!!
+	    	ClientUI.orderController.setEmailAndPhone(EmailLbl.getText(), PhoneNumberLbl.getText());
+	    	ClientUI.orderController.canMakeOrder(timeofVisit, date, wanted, "Member", numOfVisitors,stage);
+	    	System.out.println("Time: "+timeofVisit+" date: "+date+" wantedPark: "+wanted+" number of visit: "+numOfVisitors);
 	    }
 
 	    @FXML
