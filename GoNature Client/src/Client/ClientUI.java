@@ -13,7 +13,7 @@ public class ClientUI extends Application {
 	public static ClientController chat; // only one instance
 	public  static baseGuiController aFrame;
 	public static loginClientController cp;
-	
+	public static OrderScreenController oc;
 	public static void main(String args[]) throws Exception {
 		launch(args);
 	} // end main
@@ -24,10 +24,11 @@ public class ClientUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		aFrame=new baseGuiController();
-		cp = new loginClientController();
-		cp.start(primaryStage);
-		
+//		aFrame=new baseGuiController();
+//		cp = new loginClientController();
+//		cp.start(primaryStage);
+		oc = new OrderScreenController();
+		oc.start(primaryStage);
 	}
 	
 

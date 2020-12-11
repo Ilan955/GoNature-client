@@ -71,7 +71,7 @@ public boolean waitresponse = false;
 		primaryStage.getIcons().add(icon);
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("baseGui.css").toExternalForm());
-		primaryStage.setTitle("Prototyp");
+		primaryStage.setTitle("Prototyeeee");
 		primaryStage.setScene(scene);
 		
 		primaryStage.show();
