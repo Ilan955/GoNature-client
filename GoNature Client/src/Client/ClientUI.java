@@ -4,8 +4,6 @@ import javafx.application.Application;
 
 import javafx.stage.Stage;
 
-
-import java.util.Vector;
 import GUI.*;
 
 
@@ -14,6 +12,8 @@ public class ClientUI extends Application {
 	public  static baseGuiController aFrame;
 	public static loginClientController cp;
 	public static OrderScreenController oc;
+	public static EnterParkNowController ep;
+	public static WelcomeTravellerController wt;
 	public static void main(String args[]) throws Exception {
 		launch(args);
 	} // end main
@@ -27,8 +27,9 @@ public class ClientUI extends Application {
 //		aFrame=new baseGuiController();
 //		cp = new loginClientController();
 //		cp.start(primaryStage);
-		oc = new OrderScreenController();
-		oc.start(primaryStage);
+		ep = new EnterParkNowController();
+//		wt=new WelcomeTravellerController();
+		ep.start(primaryStage);
 	}
 	
 
