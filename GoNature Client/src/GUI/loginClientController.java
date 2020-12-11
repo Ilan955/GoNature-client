@@ -49,7 +49,7 @@ public class loginClientController {
 	    		Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 	    		Parent root = FXMLLoader.load(getClass().getResource("WelcomeAndLoginScreen.fxml"));
 	    		Scene scene = new Scene(root);
-	    		stage.setTitle("Prototypeeee");
+	    		stage.setTitle("Prototyp");
 	    		stage.setScene(scene);
 				
 	    		stage.show();
