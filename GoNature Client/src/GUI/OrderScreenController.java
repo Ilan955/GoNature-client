@@ -98,7 +98,7 @@ public class OrderScreenController implements Initializable{
 	    public void start(Stage primaryStage) throws Exception {	
 			Parent root = FXMLLoader.load(getClass().getResource("NewOrder.fxml"));
 			Scene scene = new Scene(root);
-			primaryStage.setTitle("Prototyeeee");
+			primaryStage.setTitle("Prototy");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
