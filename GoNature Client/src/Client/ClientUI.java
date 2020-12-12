@@ -1,21 +1,14 @@
 package Client;
 
 import javafx.application.Application;
-
 import javafx.stage.Stage;
-
-
-
 import java.util.Vector;
-
-import Controller.OrderController;
-
+import Controller.*;
 import GUI.*;
-
 
 public class ClientUI extends Application {
 	public static ClientController chat; // only one instance
-	public  static baseGuiController aFrame;
+	public static baseGuiController aFrame;
 
 	public static loginClientController cp;
 	public static OrderScreenController oc;
@@ -25,14 +18,15 @@ public class ClientUI extends Application {
 	public static loginClientController LoginClientController;
 	public static OrderScreenController orderScreenController;
 	public static OrderController orderController;
-	//public static UserController userController;
+	// public static UserController userController;
+	public static SignUpController signUpController;
 
 	public static void main(String args[]) throws Exception {
 		launch(args);
 	} // end main
-	
-	public static void set(String ip,int port) {
-		 chat= new ClientController(ip, port); 
+
+	public static void set(String ip, int port) {
+		chat = new ClientController(ip, port);
 	}
 
 	@Override
@@ -45,11 +39,10 @@ public class ClientUI extends Application {
 //		wt=new WelcomeTravellerController();
 		ep.start(primaryStage);
 
-		orderController= new OrderController();
+		orderController = new OrderController();
 		orderScreenController = new OrderScreenController();
 		orderScreenController.start(primaryStage);
 
 	}
-	
 
 }
