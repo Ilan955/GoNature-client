@@ -19,6 +19,7 @@ public class ClientUI extends Application {
 	public static OrderScreenController orderScreenController;
 	public static OrderController orderController;
 	// public static UserController userController;
+	public static SignUpScreenController signUpscreenController;
 	public static SignUpController signUpController;
 
 	public static void main(String args[]) throws Exception {
@@ -39,9 +40,9 @@ public class ClientUI extends Application {
 //		wt=new WelcomeTravellerController();
 		ep.start(primaryStage);
 
-		orderController = new OrderController();
-		orderScreenController = new OrderScreenController();
-		orderScreenController.start(primaryStage);
+		signUpController = new SignUpController();
+		signUpscreenController = new SignUpScreenController();
+		signUpscreenController.start(primaryStage);
 
 	}
 
