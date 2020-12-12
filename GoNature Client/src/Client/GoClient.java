@@ -64,10 +64,12 @@ public class GoClient extends AbstractClient {
 		  if(result[0].equals("null"))
 			  ClientUI.aFrame.GetRepondId(null);
 		  else if(result.length==3)
-			  ClientUI.aFrame.displayConnection(result);
-		  
+			  ClientUI.aFrame.displayConnection(result);  
 		  else
 			  ClientUI.aFrame.GetRepondId(result); 
+		  if(result[0].equals(true)) {
+			  ClientUI.signUpController.checker=true;
+		  }
 
 
 	}

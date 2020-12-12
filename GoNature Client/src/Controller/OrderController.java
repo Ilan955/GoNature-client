@@ -64,7 +64,7 @@ public Order canMakeOrder(String estimatedTimeInPark, String dateOfVisit, String
 	/*
 	 * There is available place in the park for the visitor
 	 * We can insert the data to the DB (data=order)
-	 * We can move the traveller to the next page, where it's show the confirm 
+	 * We can move the traveler to the next page, where it's show the confirm 
 	 */
 	else {
 		FXMLLoader loader = new FXMLLoader();
