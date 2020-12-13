@@ -36,9 +36,10 @@ public class ClientUI extends Application {
 //		cp = new loginClientController();
 //		cp.start(primaryStage);
 
-		ep = new EnterParkNowController();
+//		ep = new EnterParkNowController();
 //		wt=new WelcomeTravellerController();
-		ep.start(primaryStage);
+//		ep.start(primaryStage);
+		chat = new ClientController("localhost",5555);
 
 		signUpController = new SignUpController();
 		signUpscreenController = new SignUpScreenController();

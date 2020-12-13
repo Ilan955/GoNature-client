@@ -5,7 +5,7 @@ import Client.ClientUI;
 public class SignUpController {
 	String id, firstName, lastName, phoneNum, email, paymentMethod, memberType;
 	int numOfVisitors;
-	public Boolean checker;
+	public Boolean checker=true;
 
 	public Boolean checkExist(String id) {
 		StringBuffer sb = new StringBuffer();
