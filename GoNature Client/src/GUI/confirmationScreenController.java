@@ -46,8 +46,8 @@ public class confirmationScreenController implements Initializable{
 	    	Order o =ClientUI.orderController.order;
 	    	
 	    	WantedParkLbl.setText(o.getWantedPark());
-	    	DateLbl.setText(o.getDateOfVisit());
-	    	TimeLbl.setText(o.getTimeInPark());
+	    	DateLbl.setText(o.getDateOfVisit().toString());
+	    	TimeLbl.setText(o.getTimeInPark().toString());
 	    	EmailLbl.setText(ClientUI.orderController.getEmail());
 	    	PhoneLbl.setText(ClientUI.orderController.getPhone());
 	    	NumVisitLlbl.setText(Integer.toString(o.getNumberOfVisitors()));
