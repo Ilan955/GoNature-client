@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ExsitingOrdersScreenController">
    <children>
       <Label layoutX="15.0" layoutY="14.0" text="Exisiting orders">
          <font>
@@ -24,15 +24,14 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="ExistingOrderTable" layoutX="11.0" layoutY="120.0" prefHeight="292.0" prefWidth="883.0">
+      <TableView fx:id="ExistingOrderTable" layoutX="11.0" layoutY="120.0" prefHeight="292.0" prefWidth="854.0">
         <columns>
-          <TableColumn prefWidth="123.0" text="Date" />
-          <TableColumn prefWidth="137.0" text="Park" />
-            <TableColumn prefWidth="107.0" text="Time" />
-            <TableColumn prefWidth="149.0" text="Number of visitors" />
-            <TableColumn prefWidth="123.0" text="Price" />
-            <TableColumn fx:id="EntryTablecol" prefWidth="123.0" text="enrty" />
-            <TableColumn fx:id="CancelTableRow" prefWidth="123.0" text="cancel" />
+          <TableColumn fx:id="IDLbl" prefWidth="123.0" text="Order ID" />
+          <TableColumn fx:id="DateTbl" prefWidth="137.0" text="Date" />
+            <TableColumn fx:id="ParkLbl" prefWidth="107.0" text="Park" />
+            <TableColumn fx:id="TimeLbl" prefWidth="149.0" text="Time" />
+            <TableColumn fx:id="NumOfVisitLbl" prefWidth="123.0" text="Number of visitors" />
+            <TableColumn fx:id="PriceLbl" prefWidth="123.0" text="Price" />
         </columns>
       </TableView>
       <Button layoutX="20.0" layoutY="427.0" mnemonicParsing="false" onAction="#WhenClickBackBtn" prefHeight="31.0" prefWidth="94.0" text="Previous" textFill="#ff1515">

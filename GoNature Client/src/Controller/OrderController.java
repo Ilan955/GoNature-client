@@ -140,7 +140,6 @@ public void gotMessage(String[] msg) throws IOException {
 		checkIfCanMakeOrder(msg);
 		break;	
 	
-		
 	
 	}
 	
@@ -204,8 +203,8 @@ public void getAlternativeDates(Stage stage) throws IOException {
 		
 	}
 	for (String var:alternativeDates) {
-		d=new Data(var,order.getWantedPark(),order.getTimeInPark().toString(),Integer.toString(order.getNumberOfVisitors()),Float.toString(order.getTotalPrice()));
-		ob.add(d);
+		//d=new Data(var,order.getWantedPark(),order.getTimeInPark().toString(),Integer.toString(order.getNumberOfVisitors()),Float.toString(order.getTotalPrice()));
+		//ob.add(d);
 	}
 	
 	Parent root = FXMLLoader.load(getClass().getResource("/GUI/AlternativeDates.fxml"));
