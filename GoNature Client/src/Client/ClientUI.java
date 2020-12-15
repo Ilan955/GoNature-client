@@ -9,7 +9,7 @@ import GUI.*;
 public class ClientUI extends Application {
 	public static ClientController chat; // only one instance
 	public static baseGuiController aFrame;
-
+	public static EntranceParkController entrencePark;
 	public static loginClientController cp;
 	public static OrderScreenController oc;
 	public static EnterParkNowController ep;
@@ -19,7 +19,6 @@ public class ClientUI extends Application {
 	public static OrderScreenController orderScreenController;
 	public static OrderController orderController;
 	// public static UserController userController;
-	public static SignUpScreenController signUpscreenController;
 	public static SignUpController signUpController;
 
 	public static void main(String args[]) throws Exception {
@@ -32,17 +31,14 @@ public class ClientUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-//		aFrame=new baseGuiController();
-//		cp = new loginClientController();
-//		cp.start(primaryStage);
-
-		ep = new EnterParkNowController();
-//		wt=new WelcomeTravellerController();
-		ep.start(primaryStage);
-
+		cp = new loginClientController();
+		entrencePark=new EntranceParkController();
+		LoginClientController= new loginClientController();
+		orderScreenController = new OrderScreenController();
+		orderController=new OrderController();
 		signUpController = new SignUpController();
-		signUpscreenController = new SignUpScreenController();
-		signUpscreenController.start(primaryStage);
+		cp.start(primaryStage);
+		
 
 	}
 

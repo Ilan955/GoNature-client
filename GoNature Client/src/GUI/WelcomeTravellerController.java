@@ -19,14 +19,7 @@ public class WelcomeTravellerController {
     @FXML
     private Label TypeLBL;
 
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("WelcomeTraveller.fxml"));
-		Scene scene = new Scene(root);
-		primaryStage.setTitle("Welcome traveller");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-
-	}
+	
     
     
     @FXML

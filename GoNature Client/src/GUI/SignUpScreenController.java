@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class SignUpScreenController {
+public class SignUpScreenController implements Initializable{
 
 	@FXML
 	private TextField IdLbl;
@@ -72,13 +73,15 @@ public class SignUpScreenController {
 	}
 
 	// initialize Combo Boxes
+	 @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		setPaymentCB();
 		setTypeMemberCB();
 	}
 
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("Sign-Up New Member.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/GUI/SignUpNewMember.fxml"));
+		
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Register New Member");
 		primaryStage.setScene(scene);

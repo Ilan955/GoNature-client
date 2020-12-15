@@ -59,20 +59,34 @@ public class GoClient extends AbstractClient {
 		awaitResponse = false;
 		String st;
 		st = msg.toString();
-		String[] result = st.split(" ");
-		  
-		  if(result[0].equals("null"))
-			  ClientUI.aFrame.GetRepondId(null);
-		  else if(result.length==3)
-			  ClientUI.aFrame.displayConnection(result);  
-		  else
-			  ClientUI.aFrame.GetRepondId(result); 
-		  if(result[0].equals(true)) {
-			  ClientUI.signUpController.checker=true;
+		String whatController = getAction(st);
+		String[] res= DecrypteMassege(st);
+		
+		/*
+		 * in place 0 of res will be the name of the method need to deal with
+		 * in place greater then 0 will be all the data for this method
+		 * in every controller will be a method that will comunicate with the GoClient and transfer the data to her methods.
+		 */
+		switch(whatController) {
+		
+			case "OrderController":
+			try {
+				ClientUI.orderController.gotMessage(res);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				break;
+					
+					
+				
+		}
+			
+				
 		  }
 
 
-	}
+	
 
 	/**
 	 * This method handles all data coming from the UI
@@ -114,6 +128,22 @@ public class GoClient extends AbstractClient {
 			}	
 		}
 	}
+	
+	public String[] DecrypteMassege(String msg) {
+		String[] gotFromServer = msg.split(" ");
+		String[] res= new String[gotFromServer.length-1];
+	    for(int i = 1; i <gotFromServer.length; i++) {
+	       res[i-1]=gotFromServer[i];
+	    }
+	    return res;
+	    
+	}
+	
+	public String getAction(String msg) {
+		String[] result = msg.split(" ");
+		return result[0];
+	}
+	
 
 	/**
 	 * This method terminates the client.

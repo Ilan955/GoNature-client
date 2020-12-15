@@ -1,4 +1,5 @@
 package GUI;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -6,9 +7,14 @@ import Client.ClientUI;
 import Entities.Order;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
 public class UnapprovedOrderController implements Initializable{
@@ -35,8 +41,9 @@ public class UnapprovedOrderController implements Initializable{
 	    private Label IdNumberLbl;
 
 	    @FXML
-	    void WhenClickCancellBtn(ActionEvent event) {
-
+	    void WhenClickCancellBtn(ActionEvent event) throws IOException {
+	    	Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+	    	ClientUI.orderController.wantToCancel(stage);
 	    }
 
 	    @FXML
@@ -45,15 +52,17 @@ public class UnapprovedOrderController implements Initializable{
 	    }
 
 	    @FXML
-	    void WhenClickShowBtn(ActionEvent event) {
-
+	    void WhenClickShowBtn(ActionEvent event) throws IOException  {
+	    	Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+	    	ClientUI.orderController.getAlternativeDates(stage);
+	    	
 	    }
 	    //!!!!!!! ID of user need to get from userController!!!!!!
 	    public void setValues() {
 	    	Order o =ClientUI.orderController.order;
 	    	IdNumberLbl.setText("31198");
 	    	ParkNameLbl.setText(o.getWantedPark());
-	    	DateVisitLbl.setText(o.getDateOfVisit());
+	    	DateVisitLbl.setText(o.getDateOfVisit().toString());
 	    	String num= Integer.toString(o.getNumberOfVisitors()); 
 	    	NumberVisitorsLbl.setText(num);
 	    	

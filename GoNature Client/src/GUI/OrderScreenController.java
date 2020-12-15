@@ -1,6 +1,9 @@
 package GUI;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -20,6 +23,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 public class OrderScreenController implements Initializable{
@@ -57,7 +61,7 @@ public class OrderScreenController implements Initializable{
 	    //Set the park names for the combo box to be able to show them on the screen
 	    private void setWantedParkCm() {
 			ArrayList<String> parks = new ArrayList<String>();	
-			parks.add("ParkA");
+			parks.add("Erh");
 			parks.add("ParkB");
 			parks.add("ParkC");
 
@@ -74,7 +78,7 @@ public class OrderScreenController implements Initializable{
 	    	int flag=0;
 	    	ArrayList<String> Times = new ArrayList<String>();	
 	    	
-	    	for (int i=8;i<24;i++) {
+	    	for (int i=8;i<20;i++) {
 	    		if(flag==0) {
 	    		t= Integer.toString(i)+whole;
 	    		Times.add(t);
@@ -103,15 +107,7 @@ public class OrderScreenController implements Initializable{
 		}
 	    
 	    
-	    public void start(Stage primaryStage) throws Exception {	
-			Parent root = FXMLLoader.load(getClass().getResource("NewOrder.fxml"));
-			Scene scene = new Scene(root);
-			primaryStage.setTitle("New Order");
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			
-			
-		}
+	   
 
 	    @FXML
 	    void WhenClickCalculatePriceBtn(ActionEvent event) {
@@ -120,17 +116,41 @@ public class OrderScreenController implements Initializable{
 
 	    @FXML
 	    void WhenClickNextBtn(ActionEvent event) throws IOException {
-	    	String timeofVisit=(String)TimeOfVisitCB.getValue();
-	    	String date=DateLbl.getValue().toString();
+	    	String temp=(String)TimeOfVisitCB.getValue();
+	    	String[] res=temp.split(":");
+	    	LocalDate date=DateLbl.getValue();
 	    	String wanted= (String)WantedParkCB.getValue();
 	    	int numOfVisitors= Integer.parseInt(NumOfVisotrsLbl.getText());
 	    	Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+	    	LocalDate d = DateLbl.getValue(); 	
+	    	LocalTime time= LocalTime.of(Integer.parseInt(res[0]), Integer.parseInt(res[1]));
 	    	
 	    	//here we will send the data we got from the page, we need to use "the type"
 	    	//!!!!!!! TYPE NEED TO BE CHANGED !!!!!!!!
 	    	ClientUI.orderController.setEmailAndPhone(EmailLbl.getText(), PhoneNumberLbl.getText());
-	    	ClientUI.orderController.canMakeOrder(timeofVisit, date, wanted, "Member", numOfVisitors,stage);
-	    	System.out.println("Time: "+timeofVisit+" date: "+date+" wantedPark: "+wanted+" number of visit: "+numOfVisitors);
+	    	ClientUI.orderController.canMakeOrder(time, date, wanted, "Member", numOfVisitors,stage);
+	    	
+	    	/*
+	    	 * after knowing if the order is possible or not, showing the right screen/
+	    	 */
+	    	if(ClientUI.orderController.valid)
+	    	{
+	    		FXMLLoader loader = new FXMLLoader();
+	    		Pane root = loader.load(getClass().getResource("/GUI/Confirmation.fxml").openStream());
+	    		Scene scene = new Scene(root);
+	    		stage.setTitle("Confirm Order");
+	    		stage.setScene(scene);
+	    		stage.show();
+	    	}
+	    	else {
+	    		FXMLLoader loader = new FXMLLoader();
+	    		Pane root = loader.load(getClass().getResource("/GUI/CancellOrder.fxml").openStream());
+	    		Scene scene = new Scene(root);
+	    		stage.setTitle("Unapproved Order");
+	    		stage.setScene(scene);
+	    		stage.show();
+	    	}
+	    	//System.out.println("Time: "+timeofVisit+" date: "+date+" wantedPark: "+wanted+" number of visit: "+numOfVisitors);
 	    }
 
 	    @FXML
