@@ -40,14 +40,19 @@ public class loginClientController {
 		}
 	    
 	    
-
+	    /*
+	     * !!!!!!!! If you want to check your screen !!!!!!!!
+	     * change line 55 to what screen you want (what fxml file you need)
+	     * ip="localhost"
+	     * port= what port you put in the server
+	     */
 	    @FXML
 	    void WhenClickConnectBtn(ActionEvent event) throws Exception {
 	    		String s= IpLbl.getText();
 	    		int port= Integer.parseInt(portLbl.getText());
 	    		ClientUI.set(s, port);
 	    		Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-	    		Parent root = FXMLLoader.load(getClass().getResource("WelcomeAndLoginScreen.fxml"));
+	    		Parent root = FXMLLoader.load(getClass().getResource("NewOrder.fxml"));
 	    		Scene scene = new Scene(root);
 	    		stage.setTitle("Prototyp");
 	    		stage.setScene(scene);
