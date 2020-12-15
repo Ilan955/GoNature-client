@@ -31,7 +31,7 @@ public class SureCancellScreen implements Initializable {
 	    void WhenClickDontWantToCancelBtn(ActionEvent event) throws IOException {
 	    	 Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 	    	 FXMLLoader loader = new FXMLLoader();
-	    		Pane root = loader.load(getClass().getResource("/GUI/CencellOrder.fxml").openStream());
+	    		Pane root = loader.load(getClass().getResource("/GUI/WelcomeTraveller.fxml").openStream());
 	    		Scene scene = new Scene(root);
 	    		stage.setTitle("Cancel order");
 	    		stage.setScene(scene);

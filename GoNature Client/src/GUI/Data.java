@@ -8,14 +8,22 @@ public class Data {
 	private SimpleStringProperty Time;
 	private SimpleStringProperty numOfVisit;
 	private SimpleStringProperty Price;
-	public Data(String date, String park, String time,
+	private SimpleStringProperty ID;
+	public Data(String ID,String date, String park, String time,
 			String numOfVisit, String price) {
-		
+		this.ID=new SimpleStringProperty(ID);
 		this.Date = new SimpleStringProperty(date);
 		this.Park = new SimpleStringProperty(park);
 		this.Time = new SimpleStringProperty(time);
 		this.numOfVisit = new SimpleStringProperty(numOfVisit);
 		this.Price = new SimpleStringProperty(price);
+	}
+	
+	public void setID(String Id) {
+		this.ID=new SimpleStringProperty(Id);
+	}
+	public String getID() {
+		return ID.get();
 	}
 	public void setDate(String date) {
 		Date = new SimpleStringProperty(date);
