@@ -34,6 +34,7 @@ public class loginClientController {
 			primaryStage.setTitle("Prototype");
 			primaryStage.setScene(scene);
 			
+			
 			primaryStage.show();
 			
 			
