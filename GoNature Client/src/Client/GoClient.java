@@ -84,6 +84,8 @@ public class GoClient extends AbstractClient {
 				e.printStackTrace();
 			}
 			break;
+		case "Done":
+			break;
 
 		}
 

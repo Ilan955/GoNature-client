@@ -15,6 +15,7 @@ public class SignUpController {
 		sb.append(" ");
 		sb.append(id);
 		ClientUI.chat.accept(sb.toString());
+		System.out.println("Got back");
 	}
 
 	public void init(String id, String firstName, String lastName, String phoneNum, String email, String paymentMethod,
