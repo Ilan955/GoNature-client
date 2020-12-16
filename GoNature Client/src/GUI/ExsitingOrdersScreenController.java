@@ -62,9 +62,7 @@ public class ExsitingOrdersScreenController  implements Initializable{
 		TimeLbl.setCellValueFactory(new PropertyValueFactory<>("Time"));
 		NumOfVisitLbl.setCellValueFactory(new PropertyValueFactory<>("NumOfVisit"));
 		PriceLbl.setCellValueFactory(new PropertyValueFactory<>("Price"));
-		
-		ClientUI.orderController.ob.add(new Data("35","2020-10-10","ParkA","10:00","5","33.36"));
-		ClientUI.orderController.ob.add(new Data("6589","2020-10-16","ParkB","15:30","10","38.5"));
+		ClientUI.orderController.getExsistingOrders();
 		ExistingOrderTable.setItems(ClientUI.orderController.ob);
 		addButtonToTable();
 		
@@ -97,6 +95,7 @@ public class ExsitingOrdersScreenController  implements Initializable{
 	                            System.out.println(data.getTime());
 	                            LocalTime lt=LocalTime.parse(data.getTime());
 	                            LocalDate ld = LocalDate.parse(data.getDate());
+	                            ClientUI.orderController.isInDb=true;
 	                            ClientUI.orderController.order=new Order(orderNum,lt,ld,data.getPark(),Integer.parseInt(data.getNumOfVisit()),Float.parseFloat(data.getPrice()));
 	                            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 	                            FXMLLoader loader = new FXMLLoader();

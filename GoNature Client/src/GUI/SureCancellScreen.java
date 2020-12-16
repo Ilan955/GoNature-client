@@ -41,6 +41,8 @@ public class SureCancellScreen implements Initializable {
 	    //if the traveler want to cancel the order he will return to the main traveller page
 	    @FXML
 	    void WhenClickWantToCancel(ActionEvent event) throws IOException {
+	    	ClientUI.orderController.cancelOrder(DateLbl.getText(),ParkLbl.getText(),TimeLbl.getText());
+	    	
 	    	 Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 	    	 FXMLLoader loader = new FXMLLoader();
 	    		Pane root = loader.load(getClass().getResource("/GUI/WelcomeTraveller.fxml").openStream());
