@@ -30,7 +30,7 @@ ArrayList<String> mess= new ArrayList<String>();
 private String currentEmail;
 private String currentPhone;
 public float currentPrice;
-private Stage stage1;
+public boolean isInDb=false;
 private ArrayList<String> alternativeDates =new ArrayList<String>();
 public ObservableList<Data> ob = FXCollections.observableArrayList();
 /*
@@ -92,9 +92,6 @@ public void canMakeOrder(LocalTime time, LocalDate dateOfVisit, String wantedPar
 	 * 		if the amount of visitors in total will be greater then how many visitors can enter
 	 * 		will show the unproved order screen
 	 */
-	
-	
-	
 	String fromB=from.toString();
 	String toB=to.toString();
 	System.out.println(fromB);
@@ -122,14 +119,6 @@ public void setEmailAndPhone(String email,String phone) {
 	setPhone(phone);
 }
 
-public void setStage(Stage stage) {
-	this.stage1=stage;
-	
-}
-
-public Stage getStage() {
-	return stage1;
-}
 
 
 //This method will be the connector from the data came from the server to this controller
@@ -139,8 +128,32 @@ public void gotMessage(String[] msg) throws IOException {
 	case "canMakeOrder":
 		checkIfCanMakeOrder(msg);
 		break;	
+	case "getExsistingOrders":
+		fillExsistingOrders(msg);
 	
 	
+	}
+	
+}
+
+// array[0]=methodName, array[1]=data
+private void fillExsistingOrders(String[] ordersArray) {
+	int counter=1;
+	int check=1;
+	Data d;
+	if(!(ordersArray[1].equals("Done"))) {
+		while(!(ordersArray[counter].equals("Done"))) {
+			 d= new Data(ordersArray[counter],ordersArray[counter+1],ordersArray[counter+2],ordersArray[counter+3],ordersArray[counter+4],ordersArray[counter+5]);
+			ob.add(d);
+			counter+=6;
+			check++;
+			
+		}
+		System.out.println(check);
+		
+		
+		
+		
 	}
 	
 }
@@ -214,6 +227,75 @@ public void getAlternativeDates(Stage stage) throws IOException {
 	
 	stage.show();
 	
+	
+}
+
+//This method will be responsible for saving the order into the db
+public void confirmOrder() {
+	
+	StringBuffer sb =new StringBuffer();
+	sb.append("confirmOrder");
+	sb.append(" ");
+	sb.append(order.getTimeInPark().toString());
+	sb.append(":00");
+	sb.append(" ");
+	sb.append(order.getDateOfVisit().toString());
+	sb.append(" ");
+	sb.append(order.getWantedPark());
+	sb.append(" ");
+	sb.append(Float.toString(order.getTotalPrice()));
+	sb.append(" ");
+	
+	//!!!!!!! NEED TO BE !!!!!!
+	//sb.append(t.getId());
+	
+	sb.append("6");
+	sb.append(" ");
+	//!!!!!!! NEED TO BE !!!!!!
+	//sb.append(t.getTYpe());
+	sb.append("F");
+	sb.append(" ");
+	sb.append(Integer.toString(order.getNumberOfVisitors()));
+	order=null;
+	ClientUI.chat.accept(sb.toString());
+	
+	
+}
+
+public void cancelOrder(String dateOfVisit, String wantedPark, String timeOfVisit) {
+	//String id = traveller.getId();
+	if(isInDb) {
+		String id="4";
+		StringBuffer sb =new StringBuffer();
+		sb.append("cancelOrder");
+		sb.append(" ");
+		sb.append(timeOfVisit);
+		sb.append(":00");
+		sb.append(" ");
+		sb.append(dateOfVisit);
+		sb.append(" ");
+		sb.append(wantedPark);
+		sb.append(" ");
+		sb.append(id);
+		ClientUI.chat.accept(sb.toString());
+	}
+	else 
+		order=null;
+	isInDb=false;
+	
+	
+	
+	
+}
+/*
+ * This method will fill the observable value with all the exsisting orders of the current person
+ */
+public void getExsistingOrders() {
+	StringBuffer sb= new StringBuffer();
+	sb.append("getExsistingOrders");
+	sb.append(" ");
+	sb.append("4");
+	ClientUI.chat.accept(sb.toString());
 	
 }
 
