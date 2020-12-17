@@ -2,23 +2,22 @@
 package Client;
 
 import javafx.application.Application;
-
 import javafx.stage.Stage;
-
-
-
 import java.util.Vector;
+
 
 import Controller.EmployeeController;
 import Controller.OrderController;
 import Controller.UserController;
-import GUI.*;
 
+import Controller.*;
+
+import GUI.*;
 
 public class ClientUI extends Application {
 	public static ClientController chat; // only one instance
-	public  static baseGuiController aFrame;
-
+	public static baseGuiController aFrame;
+	public static EntranceParkController entrencePark;
 	public static loginClientController cp;
 	public static OrderScreenController oc;
 	public static EnterParkNowController ep;
@@ -28,39 +27,34 @@ public class ClientUI extends Application {
 	public static loginClientController LoginClientController;
 	public static OrderScreenController orderScreenController;
 	public static OrderController orderController;
+
 	public static EmployeeController employeeController;
 	public static UserController userController;
 	//public static UserController userController;
 
+	// public static UserController userController;
+	public static SignUpController signUpController;
+
+
 	public static void main(String args[]) throws Exception {
 		launch(args);
 	} // end main
-	
-	public static void set(String ip,int port) {
-		 chat= new ClientController("localhost", 5555); 
+
+
+	public static void set(String ip, int port) {
+		chat = new ClientController(ip, port);
 	}
 	@Override 
 	public void start(Stage primaryStage) throws Exception {
-		aFrame=new baseGuiController();
 		cp = new loginClientController();
+		entrencePark=new EntranceParkController();
+		LoginClientController= new loginClientController();
+		orderScreenController = new OrderScreenController();
+		orderController=new OrderController();
+		signUpController = new SignUpController();
 		cp.start(primaryStage);
-		set("localhost",5555);
-		//ep = new EnterParkNowController();
-//		wt=new WelcomeTravellerController();
-		//ep.start(primaryStage);
-		//employeeController = new EmployeeController();
-	//	orderController= new OrderController();
-		//orderScreenController = new OrderScreenController();
-	//	orderScreenController.start(primaryStage);
-	//	wt = new WelcomeTravellerController();
-		userController = new UserController();
-		employeeController = new EmployeeController();
-		welcomeTraveller= new WelcomeTravellerController();
-		welcomeController = new WelcomeAndLoginController();
-		welcomeController.start(primaryStage);
 		
-		
-	}
 
+	}
 
 }

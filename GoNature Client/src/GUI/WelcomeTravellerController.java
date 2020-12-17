@@ -39,6 +39,7 @@ public class WelcomeTravellerController implements Initializable {
 	}
     
 
+
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("WelcomeTraveller.fxml"));
 		Scene scene = new Scene(root);
@@ -47,6 +48,7 @@ public class WelcomeTravellerController implements Initializable {
 		primaryStage.show();
 		
 	}
+
     
     
     @FXML

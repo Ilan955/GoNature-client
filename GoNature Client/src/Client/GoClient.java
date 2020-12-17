@@ -60,40 +60,44 @@ public class GoClient extends AbstractClient {
 		awaitResponse = false;
 		String st;
 		st = msg.toString();
-	//	System.out.print(st);
-		String[] result = st.split(" ");
-		String controller = result[0];
-		String action = result[1];
-		int len = result.length;
-		len-=2;
-		String[] toSend = new String[len];
-		for (int i=0;i<len;i++)
-			toSend[i] = result[i+2];
-		//System.out.print(result[5]);
-		//System.out.print(action);
-		  if (controller.equals("UserController"))
-		  {
-			  ClientUI.userController.gotMessage(action,toSend);
-		  }
-		  else if (controller.equals("EmployeeController"))
-		  {
-			  ClientUI.employeeController.gotMessage(action,toSend);
-		  }
-			//  ClientUI.userController.setChangeScreen(true);
-		  //else if(result.length==3)
-		 // else
-			//  ClientUI.aFrame.GetRepondId(result);
-		/*  switch (result[0])
-		  {
-		  	case "EmployeeController_getEmpByID":
+		String whatController = getAction(st);
+		String[] res= DecrypteMassege(st);
+		
+		/*
+		 * in place 0 of res will be the name of the method need to deal with
+		 * in place greater then 0 will be all the data for this method
+		 * in every controller will be a method that will comunicate with the GoClient and transfer the data to her methods.
+		 */
+		switch(whatController) {
+		
+			case "OrderController":
+			try {
+				ClientUI.orderController.gotMessage(res);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				break;
+        case "EmployeeController_getEmpByID":
 		  		ClientUI.employeeControl1ler.setEmp(result);
 		  		break;
-		  	case "UserController_DisplayTraveller":
+        case "UserController_DisplayTraveller":
 				System.out.println("Got here b");
 		  		ClientUI.welcomeController.setStrings(result);
 		  		break;
-		  } */
-	}
+			case "Done":
+				break;
+					
+					
+				
+		}
+			
+				
+		  }
+
+
+	
+
 
 	/**
 	 * This method handles all data coming from the UI
@@ -135,6 +139,22 @@ public class GoClient extends AbstractClient {
 			}	
 		} 
 	}
+	
+	public String[] DecrypteMassege(String msg) {
+		String[] gotFromServer = msg.split(" ");
+		String[] res= new String[gotFromServer.length-1];
+	    for(int i = 1; i <gotFromServer.length; i++) {
+	       res[i-1]=gotFromServer[i];
+	    }
+	    return res;
+	    
+	}
+	
+	public String getAction(String msg) {
+		String[] result = msg.split(" ");
+		return result[0];
+	}
+	
 
 	/**
 	 * This method terminates the client.
