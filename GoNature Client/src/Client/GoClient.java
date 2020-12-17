@@ -6,6 +6,8 @@ package Client;
 
 
 import Client.*;
+import Entities.Traveller;
+import Entities.departmentEmployee;
 import common.*;
 import src.ocsf.client.AbstractClient;
 
@@ -54,22 +56,43 @@ public class GoClient extends AbstractClient {
 	 * @param msg The message from the server.
 	 */
 	public void handleMessageFromServer(Object msg) {
-		System.out.println("--> handleMessageFromServer");
-
+		//System.out.println("--> handleMessageFromServer");
 		awaitResponse = false;
 		String st;
 		st = msg.toString();
+	//	System.out.print(st);
 		String[] result = st.split(" ");
-		  
-		  if(result[0].equals("null"))
-			  ClientUI.aFrame.GetRepondId(null);
-		  else if(result.length==3)
-			  ClientUI.aFrame.displayConnection(result);
-		  
-		  else
-			  ClientUI.aFrame.GetRepondId(result); 
-
-
+		String controller = result[0];
+		String action = result[1];
+		int len = result.length;
+		len-=2;
+		String[] toSend = new String[len];
+		for (int i=0;i<len;i++)
+			toSend[i] = result[i+2];
+		//System.out.print(result[5]);
+		//System.out.print(action);
+		  if (controller.equals("UserController"))
+		  {
+			  ClientUI.userController.gotMessage(action,toSend);
+		  }
+		  else if (controller.equals("EmployeeController"))
+		  {
+			  ClientUI.employeeController.gotMessage(action,toSend);
+		  }
+			//  ClientUI.userController.setChangeScreen(true);
+		  //else if(result.length==3)
+		 // else
+			//  ClientUI.aFrame.GetRepondId(result);
+		/*  switch (result[0])
+		  {
+		  	case "EmployeeController_getEmpByID":
+		  		ClientUI.employeeControl1ler.setEmp(result);
+		  		break;
+		  	case "UserController_DisplayTraveller":
+				System.out.println("Got here b");
+		  		ClientUI.welcomeController.setStrings(result);
+		  		break;
+		  } */
 	}
 
 	/**
@@ -110,7 +133,7 @@ public class GoClient extends AbstractClient {
 				clientUI.display("Could not send message to server: Terminating client." + e);
 				
 			}	
-		}
+		} 
 	}
 
 	/**
