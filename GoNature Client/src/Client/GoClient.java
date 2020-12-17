@@ -6,6 +6,8 @@ package Client;
 
 
 import Client.*;
+import Entities.Traveller;
+import Entities.departmentEmployee;
 import common.*;
 import src.ocsf.client.AbstractClient;
 
@@ -54,8 +56,7 @@ public class GoClient extends AbstractClient {
 	 * @param msg The message from the server.
 	 */
 	public void handleMessageFromServer(Object msg) {
-		System.out.println("--> handleMessageFromServer");
-
+		//System.out.println("--> handleMessageFromServer");
 		awaitResponse = false;
 		String st;
 		st = msg.toString();
@@ -77,6 +78,13 @@ public class GoClient extends AbstractClient {
 				e.printStackTrace();
 			}
 				break;
+        case "EmployeeController_getEmpByID":
+		  		ClientUI.employeeControl1ler.setEmp(result);
+		  		break;
+        case "UserController_DisplayTraveller":
+				System.out.println("Got here b");
+		  		ClientUI.welcomeController.setStrings(result);
+		  		break;
 			case "Done":
 				break;
 					
@@ -89,6 +97,7 @@ public class GoClient extends AbstractClient {
 
 
 	
+
 
 	/**
 	 * This method handles all data coming from the UI
@@ -128,7 +137,7 @@ public class GoClient extends AbstractClient {
 				clientUI.display("Could not send message to server: Terminating client." + e);
 				
 			}	
-		}
+		} 
 	}
 	
 	public String[] DecrypteMassege(String msg) {
