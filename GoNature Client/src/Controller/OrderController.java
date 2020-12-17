@@ -3,7 +3,9 @@ package Controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -29,19 +31,21 @@ public boolean valid=false;
 ArrayList<String> mess= new ArrayList<String>();
 private String currentEmail;
 private String currentPhone;
+public boolean n_order=false;
 public float currentPrice;
 public boolean isInDb=false;
 private ArrayList<String> alternativeDates =new ArrayList<String>();
 public ObservableList<Data> ob = FXCollections.observableArrayList();
+public ObservableList<Data> aD =FXCollections.observableArrayList();
 /*
  * This method will check with the db if there is a place in the park for this time and date got
  * if so, will create new order, and save it later in the DB.
  * will check first if there is an order for the current time 
  * 
  */
-public void canMakeOrder(LocalTime time, LocalDate dateOfVisit, String wantedPark, String type,int numOfVisitors,Stage stage) throws IOException{
-	
-	order=new Order(5, time, dateOfVisit, wantedPark,numOfVisitors, (float)50);
+public void canMakeOrder(LocalTime time, LocalDate dateOfVisit, String wantedPark, String type,int numOfVisitors){
+	if(n_order)
+		order=new Order(5, time, dateOfVisit, wantedPark,numOfVisitors, (float)50);
 	LocalTime openingTime = LocalTime.of(8,0); 
 	LocalTime closingTime = LocalTime.of(23,30);
 	LocalTime turn=LocalTime.of(11, 00);
@@ -82,7 +86,6 @@ public void canMakeOrder(LocalTime time, LocalDate dateOfVisit, String wantedPar
 		to=tmp;
 	
 	System.out.println("The interval for "+time.toString());
-	System.out.println("\nFrom time: "+ from.toString()+" To Time: "+ to.toString());
 	
 	/*
 	 * Send the date, time number of visitors and wanted park to the db
@@ -107,7 +110,7 @@ public void canMakeOrder(LocalTime time, LocalDate dateOfVisit, String wantedPar
 	sb.append(wantedPark);
 	sb.append(" ");
 	sb.append(dateOfVisit.toString());
-	ClientUI.chat.accept(sb.toString());	
+	ClientUI.chat.accept(sb.toString());
 }
 
 public boolean getValid() {
@@ -201,31 +204,30 @@ public void wantToCancel(Stage stage) throws IOException {
 }
 
 
-public void getAlternativeDates(Stage stage) throws IOException {
-	Data d;
-	for(int i = 1;i<=15;i++) {
+public void getAlternativeDates(LocalTime timeForVisit) throws IOException {
+		alternativeDates.clear();
+		Data d;
+		aD.removeAll(aD);
+		n_order = false;
 		LocalDate date =order.getDateOfVisit();
-		LocalDate temp=date.plusDays(i);
-		LocalTime time = order.getTimeInPark();
-		String park=(order.getWantedPark());
+		LocalTime time = timeForVisit;
+		String park=order.getWantedPark();
 		int numOfVisit= order.getNumberOfVisitors();
-		if(true)
-		{
-			alternativeDates.add(temp.toString());
+		for(int i=1;i<=7;i++) {
+			LocalDate toDate=date.plusDays(i);
+			this.canMakeOrder(time, toDate, park, "f", numOfVisit);
+			if(valid)
+				alternativeDates.add(toDate.toString());
 		}
 		
-	}
 	for (String var:alternativeDates) {
-		//d=new Data(var,order.getWantedPark(),order.getTimeInPark().toString(),Integer.toString(order.getNumberOfVisitors()),Float.toString(order.getTotalPrice()));
-		//ob.add(d);
+		d=new Data("4",var,order.getWantedPark(),time.toString(),Integer.toString(order.getNumberOfVisitors()),Float.toString(order.getTotalPrice()));
+		
+		aD.add(d);
+		
+		
 	}
 	
-	Parent root = FXMLLoader.load(getClass().getResource("/GUI/AlternativeDates.fxml"));
-	Scene scene = new Scene(root);
-	stage.setTitle("Welcome");
-	stage.setScene(scene);
-	
-	stage.show();
 	
 	
 }
