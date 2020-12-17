@@ -128,7 +128,8 @@ public class OrderScreenController implements Initializable{
 	    	//here we will send the data we got from the page, we need to use "the type"
 	    	//!!!!!!! TYPE NEED TO BE CHANGED !!!!!!!!
 	    	ClientUI.orderController.setEmailAndPhone(EmailLbl.getText(), PhoneNumberLbl.getText());
-	    	ClientUI.orderController.canMakeOrder(time, date, wanted, "Member", numOfVisitors,stage);
+	    	ClientUI.orderController.n_order=true;
+	    	ClientUI.orderController.canMakeOrder(time, date, wanted, "Member", numOfVisitors);
 	    	
 	    	/*
 	    	 * after knowing if the order is possible or not, showing the right screen/

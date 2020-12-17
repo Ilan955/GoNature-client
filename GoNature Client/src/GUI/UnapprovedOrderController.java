@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
@@ -54,7 +55,12 @@ public class UnapprovedOrderController implements Initializable{
 	    @FXML
 	    void WhenClickShowBtn(ActionEvent event) throws IOException  {
 	    	Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-	    	ClientUI.orderController.getAlternativeDates(stage);
+	    	FXMLLoader loader = new FXMLLoader();
+	    	Pane root = loader.load(getClass().getResource("AlternativeDates.fxml").openStream());
+	    	Scene scene = new Scene(root);
+	    	stage.setTitle("Cancel order");
+	    	stage.setScene(scene);
+	    	stage.show();
 	    	
 	    }
 	    //!!!!!!! ID of user need to get from userController!!!!!!
