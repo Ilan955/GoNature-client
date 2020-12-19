@@ -1,5 +1,6 @@
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,8 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,6 +26,19 @@ public class WelcomeTravellerController implements Initializable {
 
     @FXML
     private Label TypeLBL;
+    
+    @FXML
+    private Button btnExistingorders;
+
+    @FXML
+    private Button btnNewOrder;
+
+    @FXML
+    private Button btnWithoutOrder;
+
+    @FXML
+    private Button LogOutBtn;
+    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
     	String first = ClientUI.userController.traveller.getFirstName();
@@ -52,8 +68,16 @@ public class WelcomeTravellerController implements Initializable {
     
     
     @FXML
-    void WhenPressEnterWithoutOrderBtn(ActionEvent event) {
-    	
+    void WhenPressEnterWithoutOrderBtn(ActionEvent event) throws IOException {
+    	Stage stage = (Stage) btnWithoutOrder.getScene().getWindow();
+		stage.close();
+		FXMLLoader loader = new FXMLLoader();
+		Stage primaryStage = new Stage();
+		Pane root = loader.load(getClass().getResource("/GUI/EnterParkNow.fxml").openStream());
+		Scene scene = new Scene(root);
+		primaryStage.setTitle("Enter Park Now");
+		primaryStage.setScene(scene);
+		primaryStage.show();
     }
 
     @FXML

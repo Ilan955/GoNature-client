@@ -62,7 +62,9 @@ public class GoClient extends AbstractClient {
 		st = msg.toString();
 		String whatController = getAction(st);
 		String[] res= DecrypteMassege(st);
-		
+		int len = res.length;
+		len-=2;
+		String[] toSend = new String[len];
 		/*
 		 * in place 0 of res will be the name of the method need to deal with
 		 * in place greater then 0 will be all the data for this method
@@ -78,12 +80,12 @@ public class GoClient extends AbstractClient {
 				e.printStackTrace();
 			}
 				break;
-        case "EmployeeController_getEmpByID":
-		  		ClientUI.employeeController.setEmp(result);
+        case "EmployeeController":
+        	ClientUI.employeeController.gotMessage(res[1],toSend);
 		  		break;
-        case "UserController_DisplayTraveller":
+        case "UserController":
 				System.out.println("Got here b");
-		  		ClientUI.welcomeController.setStrings(result);
+				ClientUI.userController.gotMessage(res[1],toSend);
 		  		break;
         case "ParkController":
 			ClientUI.parkController.gotMessage(res);
@@ -91,18 +93,14 @@ public class GoClient extends AbstractClient {
 		break;
 	case "EntranceParkController":
 		ClientUI.entranceParkController.gotMesage(res);
-		}
 		break;
 		
 		case "Done":
-				break;
-					
-					
-				
+		
+			break;			
 		}
-			
-				
-		  }
+						
+  }
 
 
 	
