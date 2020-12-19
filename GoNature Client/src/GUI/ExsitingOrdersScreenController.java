@@ -173,8 +173,13 @@ public class ExsitingOrdersScreenController  implements Initializable{
 	                            int timeM=timeNow.getMinute();
 	                            int timelH=lt.getHour();
 	                            int timelM=lt.getMinute();
-	                            if (ld.compareTo(dateNow)==0&&timeH==timelH&&timelM==timeM)
-	                            	System.out.println("GOOD");
+	                            if (ld.compareTo(dateNow)==0&&timeH==timelH&&timelM==timeM) {
+	                   
+	                                Alert a = new Alert(AlertType.NONE,"Welcome to the park!"); 
+		               				 a.setAlertType(AlertType.CONFIRMATION);
+		               				 a.show();
+	                            }
+	                            	
 	                            else {
 	                            	Alert a = new Alert(AlertType.NONE,"Now it's not the time for your order!"); 
 	               				 a.setAlertType(AlertType.ERROR);
