@@ -77,6 +77,24 @@ public class GoClient extends AbstractClient {
 				e.printStackTrace();
 			}
 				break;
+			
+			case "DiscountController": 
+				try {
+					ClientUI.discountController.gotMessage(res);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					break;
+					
+			case "WaitingListController":
+				try {
+					ClientUI.waitingListController.gotMessage(res);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					break;
 					
 					
 				

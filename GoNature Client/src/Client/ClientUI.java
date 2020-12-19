@@ -20,6 +20,8 @@ public class ClientUI extends Application {
 	public static OrderController orderController;
 	// public static UserController userController;
 	public static SignUpController signUpController;
+	public static DiscountController discountController;
+	public static WaitingListController waitingListController;
 
 	public static void main(String args[]) throws Exception {
 		launch(args);
@@ -37,6 +39,7 @@ public class ClientUI extends Application {
 		orderScreenController = new OrderScreenController();
 		orderController=new OrderController();
 		signUpController = new SignUpController();
+		discountController = new DiscountController();
 		cp.start(primaryStage);
 		
 

@@ -41,7 +41,7 @@ public ObservableList<Data> ob = FXCollections.observableArrayList();
  */
 public void canMakeOrder(LocalTime time, LocalDate dateOfVisit, String wantedPark, String type,int numOfVisitors,Stage stage) throws IOException{
 	
-	order=new Order(5, time, dateOfVisit, wantedPark,numOfVisitors, (float)50);
+	//order=new Order(5, time, dateOfVisit, wantedPark,numOfVisitors, (float)50);
 	LocalTime openingTime = LocalTime.of(8,0); 
 	LocalTime closingTime = LocalTime.of(23,30);
 	LocalTime turn=LocalTime.of(11, 00);
