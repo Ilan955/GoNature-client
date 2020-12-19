@@ -12,7 +12,7 @@ public class EntranceParkController {
 	/*
 	 * this method handle the GoClient data
 	 */
-	public void getMesage(String[] msg) {
+	public void gotMesage(String[] msg) {
 	
 		
 	}

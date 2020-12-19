@@ -17,7 +17,7 @@ import GUI.*;
 public class ClientUI extends Application {
 	public static ClientController chat; // only one instance
 	public static baseGuiController aFrame;
-	public static EntranceParkController entrencePark;
+	public static EntranceParkController entranceParkController;
 	public static loginClientController cp;
 	public static OrderScreenController oc;
 	public static EnterParkNowController ep;
@@ -27,7 +27,7 @@ public class ClientUI extends Application {
 	public static loginClientController LoginClientController;
 	public static OrderScreenController orderScreenController;
 	public static OrderController orderController;
-
+	public static ParkController parkController;
 	public static EmployeeController employeeController;
 	public static UserController userController;
 	//public static UserController userController;
@@ -47,7 +47,8 @@ public class ClientUI extends Application {
 	@Override 
 	public void start(Stage primaryStage) throws Exception {
 		cp = new loginClientController();
-		entrencePark=new EntranceParkController();
+		parkController=new ParkController();
+		entranceParkController=new EntranceParkController();
 		LoginClientController= new loginClientController();
 		orderScreenController = new OrderScreenController();
 		orderController=new OrderController();

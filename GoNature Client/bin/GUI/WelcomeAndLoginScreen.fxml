@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -19,7 +20,7 @@
                   <Font name="Corbel" size="39.0" />
                </font>
             </Label>
-            <ImageView fitHeight="218.0" fitWidth="518.0" layoutX="81.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="218.0" fitWidth="518.0" layoutX="81.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
           <AnchorPane layoutY="316.0" maxWidth="-Infinity" minHeight="0.0" minWidth="5.0" prefHeight="182.0" prefWidth="351.0">
                <children>
                   <Label layoutX="46.0" layoutY="50.0" text="User Name:" />
@@ -34,17 +35,13 @@
                      </padding>
                   </TextField>
                   <Label layoutX="53.0" layoutY="102.0" text="Password" />
-                  <TextField fx:id="PasswordLBL" layoutX="147.0" layoutY="101.0" prefHeight="21.0" prefWidth="141.0">
-                     <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </padding>
-                  </TextField>
                   <Button fx:id="EmployeeloginBTN" layoutX="231.0" layoutY="137.0" mnemonicParsing="false" onAction="#WhenPressEmployeeLogInBtn" text="Login" textFill="#f53d24">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                   <Separator layoutX="348.0" layoutY="-8.0" orientation="VERTICAL" prefHeight="201.0" prefWidth="7.0" />
+                  <PasswordField fx:id="PasswordLBL" layoutX="147.0" layoutY="97.0" prefHeight="31.0" prefWidth="141.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="368.0" layoutY="316.0" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="182.0" prefWidth="318.0">

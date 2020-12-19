@@ -79,13 +79,22 @@ public class GoClient extends AbstractClient {
 			}
 				break;
         case "EmployeeController_getEmpByID":
-		  		ClientUI.employeeControl1ler.setEmp(result);
+		  		ClientUI.employeeController.setEmp(result);
 		  		break;
         case "UserController_DisplayTraveller":
 				System.out.println("Got here b");
 		  		ClientUI.welcomeController.setStrings(result);
 		  		break;
-			case "Done":
+        case "ParkController":
+			ClientUI.parkController.gotMessage(res);
+			// TODO Auto-generated catch block
+		break;
+	case "EntranceParkController":
+		ClientUI.entranceParkController.gotMesage(res);
+		}
+		break;
+		
+		case "Done":
 				break;
 					
 					
